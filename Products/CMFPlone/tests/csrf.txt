@@ -302,6 +302,7 @@ Now rename
   HTTPError: HTTP Error 403: Forbidden
 
   >>> browser.goBack()
+  >>> browser.reload()
   >>> browser.getControl('New Short Name').value = 'folder'
   >>> browser.getControl(name='form.buttons.Rename').click()
   >>> browser.url.strip()
@@ -325,6 +326,7 @@ Now rename
   HTTPError: HTTP Error 403: Forbidden
 
   >>> browser.goBack()
+  >>> browser.reload()
   >>> browser.getControl(name='entries.role_Editor:records').value = ['True']
   >>> browser.getControl('Save').click()
   >>> browser.url
@@ -347,6 +349,7 @@ And finally removing the item again:
   HTTPError: HTTP Error 403: Forbidden
 
   >>> browser.goBack()
+  >>> browser.reload()
   >>> browser.getControl('Delete').click()
   >>> browser.url
   'http://nohost/plone'
