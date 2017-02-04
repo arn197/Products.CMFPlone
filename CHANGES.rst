@@ -357,6 +357,16 @@ Bug fixes:
   [jensens]
 
 
+- Test fix (Zope 4 related): More General test if controlpanel back link URL is ok.
+  [jensens]
+
+
+- Remove deprecated __of__ calls on BrowserViews
+  [MrTango]
+
+- Add basic browser tests to check ZMI views
+  [MrTango]
+
 5.1a2 (2016-08-19)
 ------------------
 
