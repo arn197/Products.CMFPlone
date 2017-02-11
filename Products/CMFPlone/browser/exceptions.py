@@ -36,7 +36,8 @@ class ExceptionView(BrowserView):
             response._unauthorized()
 
         # Indicate exception as JSON
-        if "text/html" not in request.getHeader('Accept', ''):
+        accept = request.getHeader('Accept', '')
+        if accept and "text/html" not in accept:
             request.response.setHeader("Content-Type", "application/json")
             return json.dumps({
                 'error_type': error_type,
