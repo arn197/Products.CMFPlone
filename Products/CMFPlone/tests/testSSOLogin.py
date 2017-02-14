@@ -192,9 +192,11 @@ class TestSSOLoginIframe(SSOLoginTestCase):
         # The test browser does not support iframes
         form = browser.getForm(name='login_form')
         form.submit()
-        # Check the registration form does not have an incorrect came_from link
+        # Check the registration form link
         link = browser.getLink('registration form')
-        self.assertFalse('came_from' in link.url)
+        self.assertEqual(
+            link.url,
+            'http://nohost/plone/@@register?came_from=http%3A//nohost/plone')
         self.assertEqual(link.attrs['target'], '_parent')
         # Check we are logged out of the login_portal too
         browser.open(self.login_portal.absolute_url())
