@@ -52,14 +52,13 @@ class SiteControlPanelFunctionalTest(unittest.TestCase):
         self.browser.open(
             "%s/@@site-controlpanel" % self.portal_url)
         self.browser.getLink('Site Setup').click()
-        self.assertEqual(
-            self.browser.url,
-            'http://nohost/plone/@@overview-controlpanel')
+        self.assertTrue(
+            self.browser.url.endswith('/plone/@@overview-controlpanel')
+        )
 
     def test_site_controlpanel_view(self):
         view = getMultiAdapter((self.portal, self.portal.REQUEST),
                                name="site-controlpanel")
-        view = view.__of__(self.portal)
         self.assertTrue(view())
 
     def test_site_title_is_stored_in_registry(self):

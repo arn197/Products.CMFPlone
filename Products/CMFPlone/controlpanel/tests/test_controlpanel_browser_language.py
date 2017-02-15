@@ -58,14 +58,13 @@ class LanguageControlPanelFunctionalTest(unittest.TestCase):
         self.browser.open(
             "%s/@@language-controlpanel" % self.portal_url)
         self.browser.getLink('Site Setup').click()
-        self.assertEqual(
-            self.browser.url,
-            'http://nohost/plone/@@overview-controlpanel')
+        self.assertTrue(
+            self.browser.url.endswith('/plone/@@overview-controlpanel')
+        )
 
     def test_language_controlpanel_view(self):
         view = getMultiAdapter((self.portal, self.portal.REQUEST),
                                name="language-controlpanel")
-        view = view.__of__(self.portal)
         self.assertTrue(view())
 
     def test_default_language(self):
