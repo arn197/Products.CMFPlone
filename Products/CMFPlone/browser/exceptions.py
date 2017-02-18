@@ -2,7 +2,9 @@ from AccessControl import getSecurityManager
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from six import reraise
+from zExceptions import Unauthorized
 from zExceptions.ExceptionFormatter import format_exception
+from zope.interface import classImplements
 from zope.security.interfaces import IUnauthorized
 import json
 import sys
@@ -60,3 +62,8 @@ class ExceptionView(BrowserView):
             error_type=error_type,
             error_tb=error_tb,
         )
+
+
+class IPloneUnauthorized(IUnauthorized):
+    pass
+classImplements(Unauthorized, IPloneUnauthorized)
