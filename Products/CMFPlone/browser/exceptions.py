@@ -75,3 +75,21 @@ class ExceptionView(BrowserView):
 class IPloneUnauthorized(IUnauthorized):
     pass
 classImplements(Unauthorized, IPloneUnauthorized)
+
+
+class UnrenderedExceptionView(BrowserView):
+    # Re-raise exceptions that should never be rendered.
+    # (ConflictError, KeyboardInterrupt)
+
+    def __call__(self):
+        reraise(*sys.exc_info())
+
+
+class RedirectView(BrowserView):
+    # Make sure 30x HTTP exceptions are always rendered
+    # even in the test browser with handleErrors = False.
+    # And make sure we don't waste time rendering a body
+    # for them.
+
+    def __call__(self):
+        return ''
